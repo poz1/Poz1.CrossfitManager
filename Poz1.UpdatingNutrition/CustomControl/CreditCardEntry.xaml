@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:control="clr-namespace:Pagita.CustomControl;assembly=Pagita" 
+		xmlns:markup="clr-namespace:Pagita.MarkupExtension;assembly=Pagita" 
+		xmlns:system="clr-namespace:System;assembly=mscorlib" 
+		x:Class="Pagita.CustomControl.CreditCardEntry">
+
+	<ContentView.Content>
+		
+			<StackLayout>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10*"/>
+						<ColumnDefinition Width="90*"/>
+					</Grid.ColumnDefinitions>
+					<Image x:Name="CircuitIcon" Source="{markup:ImageResource Source=Pagita.Image.CreditCard.Unknown.png}" VerticalOptions="Center"/>
+					<control:ExtendedEntry x:Name="CardNumberEntry" Text="{Binding Card.CardNumber}" Grid.Column="1" MaxLength="25" Placeholder="{markup:Language Text=CardNumber}" Keyboard="Numeric" FontAttributes="Bold" PlaceholderTextColor="{StaticResource PagitaOrange}" VerticalOptions="Center"/>
+				</Grid>
+
+				<Grid Grid.Row="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10*"/>
+						<ColumnDefinition Width="90*"/>
+					</Grid.ColumnDefinitions>
+					<Image Source="{markup:ImageResource Source=Pagita.Image.CreditCard.CVV.png}" VerticalOptions="Center"/>
+					<control:ExtendedEntry Text="{Binding Card.CVV}" Grid.Column="1" MaxLength="4" Placeholder="{markup:Language Text=CVV}" Keyboard="Numeric" FontAttributes="Bold" PlaceholderTextColor="{StaticResource PagitaOrange}" VerticalOptions="Center"/>
+				</Grid>
+
+				<Grid Grid.Row="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10*"/>
+						<ColumnDefinition Width="45*"/>
+						<ColumnDefinition Width="45*"/>
+					</Grid.ColumnDefinitions>
+					<Image Source="{markup:ImageResource Source=Pagita.Image.CreditCard.Expiry.png}" VerticalOptions="Center"/>
+					<Picker Grid.Column="1" x:Name="MonthsPicker" VerticalOptions="Center"></Picker>
+					<Picker Grid.Column="2" x:Name="YearsPicker" VerticalOptions="Center"></Picker>
+				</Grid>
+
+				<Grid Grid.Row="3">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="10*"/>
+						<ColumnDefinition Width="90*"/>
+					</Grid.ColumnDefinitions>
+					<Image Source="{markup:ImageResource Source=Pagita.Image.CreditCard.Owner.png}" VerticalOptions="Center"/>
+     				<control:ExtendedEntry Text="{Binding Card.Owner}" Grid.Column="1" Placeholder="{markup:Language Text=CardOwner}" FontAttributes="Bold" PlaceholderTextColor="{StaticResource PagitaOrange}" VerticalOptions="Center" ReturnType="Done"/>
+				</Grid>
+				
+			</StackLayout>
+	</ContentView.Content>
+</ContentView>

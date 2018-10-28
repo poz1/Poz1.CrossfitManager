@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage     
+        xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        xmlns:markup="clr-namespace:Poz1.UpdatingNutrition.MarkupExtension;assembly=Poz1.UpdatingNutrition"
+        xmlns:control="clr-namespace:Poz1.UpdatingNutrition.CustomControl;assembly=Poz1.UpdatingNutrition"
+        xmlns:converter="clr-namespace:Poz1.UpdatingNutrition.Converter;assembly=Poz1.UpdatingNutrition"
+        xmlns:vm="clr-namespace:Poz1.UpdatingNutrition.ViewModels;assembly=Poz1.UpdatingNutrition" Title="{Binding Title}"
+        x:Class="Poz1.UpdatingNutrition.Views.RegisterPage">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+    <control:ButtonScrollView >
+        <StackLayout Spacing="20" Margin="20" Orientation="Vertical">
+            <control:CircleImage Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.UserPlaceHolder.png}" BorderColor="{StaticResource PagitaOrange}" BorderThickness="5" VerticalOptions="Center" HorizontalOptions="Center"></control:CircleImage>
+
+            <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsLoading, Converter={StaticResource NegateBool}}">
+                <control:ExtendedEntry Placeholder="{markup:Language Text=Name}" Text="{Binding Name}"></control:ExtendedEntry>
+                <control:ExtendedEntry Placeholder="{markup:Language Text=Surname}" Text="{Binding Surname}"></control:ExtendedEntry>
+                <control:ExtendedEntry Placeholder="{markup:Language Text=Email}" Text="{Binding Email}"></control:ExtendedEntry>
+                <control:ExtendedEntry Placeholder="{markup:Language Text=Password}" IsPassword="True" Text="{Binding Password}"></control:ExtendedEntry>
+<!--                <control:ExtendedEntry Placeholder="{markup:Language Text=Password Confirmation}" IsPassword="True" Text="{Binding PasswordConfirmation}" ReturnType="Done"></control:ExtendedEntry>
+-->                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*"></ColumnDefinition>
+                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Text="{markup:Language Text=Registering as a coach}" FontSize="Default" VerticalTextAlignment="End"></Label>
+                        <Switch IsToggled="{Binding IsCoach}" Grid.Column="1"></Switch>                 
+                </Grid>
+                
+<!--                <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsCoach, Converter={StaticResource NegateBool}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Text="{markup:Language Text=Sex}" FontSize="Medium" VerticalTextAlignment="End"></Label>
+                        <Picker ItemsSource="{Binding SexList}" Grid.Column="1"></Picker>                 
+                </Grid>
+                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Text="{markup:Language Text=Age}" FontSize="Medium" VerticalTextAlignment="End"></Label>
+                        <Picker ItemsSource="{Binding AgeList}" Grid.Column="1"></Picker>                 
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Text="{markup:Language Text=Weight (Kg)}" FontSize="Medium" VerticalTextAlignment="End"></Label>
+                        <Picker ItemsSource="{Binding WeightList}" Grid.Column="1"></Picker>                 
+                </Grid>
+                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        <Label Text="{markup:Language Text=Height (cm)}" FontSize="Medium" VerticalTextAlignment="End"></Label>
+                        <Picker ItemsSource="{Binding HeightList}" Grid.Column="1"></Picker>                 
+                </Grid>
+                
+                </StackLayout>-->
+                
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Orientation="Vertical" IsVisible="{Binding IsBusy, Converter={StaticResource NegateBool}}">
+        
+             
+            </StackLayout>
+
+            <ActivityIndicator IsVisible="{Binding IsBusy}" Grid.Row="1" Grid.RowSpan="2" VerticalOptions="Center" HorizontalOptions="Center" IsRunning="True"></ActivityIndicator>
+
+            <control:TintableButton Grid.Row="3" Command="{Binding RegisterCommand}" Text="{markup:Language Text=Register}" IsVisible="{Binding IsBusy, Converter={StaticResource NegateBool}}" TintColor="{StaticResource PagitaOrange}" VerticalOptions="Center" TextColor="White"></control:TintableButton>
+<!--            <control:FacebookLoginButton Grid.Row="4" Text="{markup:Language Text=FacebookRegister}" IsEnabled="{Binding RegisterEnabled}" IsVisible="{Binding FacebookButtonVisibility}" VerticalOptions="Center" TextColor="White"></control:FacebookLoginButton>
+-->            <BoxView Grid.Row="4" HeightRequest="0" VerticalOptions="End"></BoxView>
+        </StackLayout >
+    </control:ButtonScrollView>
+</ContentPage>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage BarBackgroundColor="{StaticResource PagitaOrange}" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:views="clr-namespace:Poz1.UpdatingNutrition.Views" x:Class="Poz1.UpdatingNutrition.Views.HomePage" Title="Updating Nutrition">
+    <TabbedPage.Children>
+        <NavigationPage Title="WOD">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:TargetPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Home">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_about.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:MainPage/>
+            </x:Arguments>
+        </NavigationPage>
+          <!--<NavigationPage Title="Diet">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_about.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:DietPage/>
+            </x:Arguments>
+        </NavigationPage>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </TabbedPage.Children>
+</TabbedPage>

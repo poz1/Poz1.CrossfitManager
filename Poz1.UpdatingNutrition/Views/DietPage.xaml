@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"     xmlns:markup="clr-namespace:Poz1.UpdatingNutrition.MarkupExtension;assembly=Poz1.UpdatingNutrition"
+        xmlns:control="clr-namespace:Poz1.UpdatingNutrition.CustomControl;assembly=Poz1.UpdatingNutrition"
+      
+             xmlns:vm="clr-namespace:Poz1.UpdatingNutrition.ViewModels;assembly=Poz1.UpdatingNutrition" Title="Coaching"
+ x:Class="Poz1.UpdatingNutrition.Views.DietPage">
+        <ContentPage.BindingContext>
+        <vm:DietViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+               <Grid.RowDefinitions>
+                            <RowDefinition Height="90*">
+                            </RowDefinition>
+                            <RowDefinition Height="10*">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
+         <control:BindableListView RowHeight="120"  Grid.Row="0" x:Name="listview" ItemsSource="{Binding Exs}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}" ItemTappedCommand="{Binding PromotionSelectedCommand}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <StackLayout>
+                            <Frame  CornerRadius="5" HasShadow="true" Margin="20">
+                                  <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="70*">
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <control:CircleImage Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.UserPlaceHolder.png}" BorderColor="{StaticResource PagitaOrange}" BorderThickness="5" VerticalOptions="Center" Margin="5,0,0,0" HorizontalOptions="Start">
+                                    </control:CircleImage>
+                                 <Grid Grid.Column="1">
+                                        <Label Text="{Binding Date}" VerticalOptions="Center" FontAttributes="Bold" HorizontalTextAlignment="End">
+                                        </Label>                                           
+                                            <Label Grid.Row="1" Text="{Binding Content}" VerticalOptions="Center" FontAttributes="Bold" HorizontalTextAlignment="Start">
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+                                  
+                            </Frame>
+                                </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </control:BindableListView>
+                <control:TintableButton Grid.Row="1" Text="New Survey" Command="{Binding RegisterCommand}" IsEnabled="{Binding RegisterEnabled}" TintColor="{StaticResource PagitaGreen}" VerticalOptions="Center" TextColor="White"></control:TintableButton>
+                </Grid>
+            </ContentPage.Content>
+</ContentPage>

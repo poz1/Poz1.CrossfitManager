@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:markup="clr-namespace:Poz1.UpdatingNutrition.MarkupExtension;assembly=Poz1.UpdatingNutrition"
+    xmlns:control="clr-namespace:Poz1.UpdatingNutrition.CustomControl;assembly=Poz1.UpdatingNutrition"
+    xmlns:converter="clr-namespace:Poz1.UpdatingNutrition.Converter;assembly=Poz1.UpdatingNutrition"
+    xmlns:vm="clr-namespace:Poz1.UpdatingNutrition.ViewModels;assembly=Poz1.UpdatingNutrition" Title="{Binding Title}"
+    x:Class="Poz1.UpdatingNutrition.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <control:CircleImage Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.Logo.png}" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10"></control:CircleImage>
+
+            <StackLayout Grid.Row="1" Orientation="Vertical" IsVisible="{Binding IsBusy, Converter={StaticResource NegateBool}}">
+                <control:ExtendedEntry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" ReturnType="Next"></control:ExtendedEntry >
+                <control:ExtendedEntry Placeholder="Password" IsPassword="True" Text="{Binding Password}" ReturnType="Done" CompletedCommand="{Binding LoginCommand}"></control:ExtendedEntry >
+
+            <!-- //Remember me -->  
+            <!--
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Switch IsToggled="{Binding IsRememberMeChecked}"></Switch>
+                    <Label Grid.Column="1" Text="{markup:Language Text=RememberMe}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End"></Label>
+                </Grid>
+            -->
+            </StackLayout>
+
+            <control:TintableButton Grid.Row="2" Text="Login" Command="{Binding LoginCommand}" IsEnabled="{Binding IsLoading, Converter={StaticResource NegateBool}}" TintColor="{StaticResource PagitaOrange}" TextColor="White" VerticalOptions="Center"></control:TintableButton>
+
+            <ActivityIndicator Grid.Row="1" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center" IsRunning="True" Margin="0,0,0,10"></ActivityIndicator>
+
+            <control:TintableButton Grid.Row="3" Text="Register" Command="{Binding RegisterCommand}" IsEnabled="{Binding RegisterEnabled}" TintColor="{StaticResource PagitaGreen}" VerticalOptions="Center" TextColor="White"></control:TintableButton>
+            <control:TappableLabel Grid.Row="4" Text="Reset Password" TappedCommand="{Binding ForgotPasswordCommand}" TextColor="{StaticResource PagitaGrey}" FontSize="Small" HorizontalTextAlignment="Center" VerticalOptions="Center"></control:TappableLabel>
+
+            <Label Grid.Row="5" Text="Info" TextColor="#666666" HorizontalTextAlignment="Center" VerticalOptions="End" FontSize="Micro"></Label>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

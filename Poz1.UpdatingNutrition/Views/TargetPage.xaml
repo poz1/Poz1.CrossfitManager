@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:markup="clr-namespace:Poz1.UpdatingNutrition.MarkupExtension;assembly=Poz1.UpdatingNutrition"     xmlns:vm="clr-namespace:Poz1.UpdatingNutrition.ViewModels;assembly=Poz1.UpdatingNutrition" Title="{Binding Title}"
+ xmlns:control="clr-namespace:Poz1.UpdatingNutrition.CustomControl;assembly=Poz1.UpdatingNutrition" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Poz1.UpdatingNutrition.Views.TargetPage">
+      <ContentPage.BindingContext>
+        <vm:TargetViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+           <!-- <Grid.RowDefinitions>
+                <RowDefinition Height="47.5*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="47.5*" />
+            </Grid.RowDefinitions>-->
+            <Frame CornerRadius="5" HasShadow="true" Margin="20,20,20,0"   x:Name="GridGym" IsVisible="{Binding SSP}">
+                <StackLayout Spacing="0">
+                    <Grid>
+                        
+                        <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60*">
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="40*">
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="UPCOMING WORKOUT" FontAttributes="Bold" />
+                        <Label Grid.Column="1" Text="{Binding Dt}" FontAttributes="Bold" />
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*">
+                                </ColumnDefinition>
+                                <ColumnDefinition Width="70*">
+                                </ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.Flame.png}" VerticalOptions="Center" Margin="0">
+                            </Image>
+                            <Label Grid.Column="1" Text="{Binding Ca}" VerticalOptions="Center" FontAttributes="Bold" HorizontalTextAlignment="Start" Margin="0,0,10,0">
+                            </Label>
+                        </Grid>
+                    </Grid>
+                    <StackLayout Grid.Row="1">
+                        <control:GridView ItemsSource="{Binding Exs}" TileHeight="70">
+                            <control:GridView.MaxColumns>
+                                <OnPlatform x:TypeArguments="x:Int32" iOS="3" Android="3" />
+                            </control:GridView.MaxColumns>
+                            <control:GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="70*" />
+                                                <RowDefinition Height="30*" />
+                                            </Grid.RowDefinitions>
+                                             <control:CircleImage Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.Ex.png}" BorderColor="{StaticResource PagitaGrey}" BorderThickness="5" VerticalOptions="Center" HorizontalOptions="Center"></control:CircleImage>
+                                            <Label Grid.Row="1" Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </control:GridView.ItemTemplate>
+                        </control:GridView>
+                    </StackLayout>
+                     </Grid>
+                </StackLayout>
+            </Frame>
+            <Label Grid.Row="1" Text="HISTORY" FontAttributes="Bold" Margin="20,20,0,0" />
+          
+            <control:BindableListView RowHeight="120"  Grid.Row="2" x:Name="listview" ItemsSource="{Binding WODS}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}" ItemTappedCommand="{Binding PromotionSelectedCommand}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <StackLayout>
+                            <Frame  CornerRadius="5" HasShadow="true" Margin="20">
+                                  <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30*">
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="70*">
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <control:CircleImage Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.UserPlaceHolder.png}" BorderColor="{StaticResource PagitaOrange}" BorderThickness="5" VerticalOptions="Center" Margin="5,0,0,0" HorizontalOptions="Start">
+                                    </control:CircleImage>
+                                 <Grid Grid.Column="1">
+                                        <Label Text="{Binding Date}" VerticalOptions="Center" FontAttributes="Bold" HorizontalTextAlignment="End">
+                                        </Label>
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="15*">
+                                                </ColumnDefinition>
+                                                <ColumnDefinition Width="85*">
+                                                </ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{markup:ImageResource Source=Poz1.UpdatingNutrition.Image.Flame.png}" VerticalOptions="Center">
+                                            </Image>
+                                            <Label Grid.Column="1" Text="{Binding Calories}" VerticalOptions="Center" FontAttributes="Bold" HorizontalTextAlignment="Start">
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                  
+                            </Frame>
+                                </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </control:BindableListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

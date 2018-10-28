@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:control="clr-namespace:Pagita.CustomControl;assembly=Pagita" 
+		xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+		xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView" 
+		x:Class="Pagita.CustomControl.MachineMapView">
+
+	<ContentView.Content>
+		<Grid x:Name="mainGrid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="85*">
+				</RowDefinition>
+				<RowDefinition Height="15*" x:Name="panelRow">
+				</RowDefinition>
+			</Grid.RowDefinitions>
+			<!--<control:MachineMap x:Name="map" IsShowingUser="true" Machines="{Binding MachineList}" Grid.RowSpan="2">
+			</control:MachineMap>-->
+			<maps:Map x:Name="map" ItemsSource="{Binding PinsList}" IsShowingUser="true" Grid.RowSpan="2"/>
+			<Grid x:Name="panel" RowSpacing="0" Grid.Row="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="5" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid x:Name="tabContainer" BackgroundColor="Gray">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+				</Grid>
+				<cv:CarouselView x:Name="cv" Grid.Row="1" BackgroundColor="White">
+					<cv:CarouselView.ItemTemplate>
+						<DataTemplate>
+							<Grid Grid.Row="1" BackgroundColor="White">
+								<Label Text="{Binding Address}" FontSize="16" HorizontalOptions="Center" VerticalOptions="End" />
+								<Label Grid.Row="1" Text="{Binding Label}" FontSize="16" HorizontalOptions="Center" VerticalOptions="Start" />
+							</Grid>
+						</DataTemplate>
+					</cv:CarouselView.ItemTemplate>
+				</cv:CarouselView>
+			</Grid>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

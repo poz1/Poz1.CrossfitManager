@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />  
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
+    <PackageReference Include="Microcharts" Version="0.7.1" />
+    <PackageReference Include="UrhoSharp.Forms" Version="1.8.93" />
+    <PackageReference Include="XamarinForms.CardView.NetStandard" Version="1.1.1.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MarkupExtension\" />
+    <Folder Include="Mvvm\" />
+    <Folder Include="Image\" />
+    <Folder Include="Ninja\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="CustomControl\CodeEntry.xaml" />
+    <EmbeddedResource Remove="CustomControl\CreditCardEntry.xaml" />
+    <EmbeddedResource Remove="CustomControl\MachineMapView.xaml" />
+    <EmbeddedResource Remove="CustomControl\LabelSection.xaml" />
+    <EmbeddedResource Remove="CustomControl\HeaderDivider.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Image\Logo.png" />
+    <None Remove="Image\UserPlaceHolder.png" />
+    <None Remove="Ninja\Kachujin.mdl" />
+    <None Remove="Image\Flame.png" />
+    <None Remove="Image\Ex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CustomControl\CodeEntry.xaml" />
+    <None Include="CustomControl\CreditCardEntry.xaml" />
+    <None Include="CustomControl\MachineMapView.xaml" />
+    <None Include="CustomControl\LabelSection.xaml" />
+    <None Include="CustomControl\HeaderDivider.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\Logo.png" />
+    <EmbeddedResource Include="Image\UserPlaceHolder.png" />
+    <EmbeddedResource Include="Ninja\Kachujin.mdl" />
+    <EmbeddedResource Include="Image\Flame.png" />
+    <EmbeddedResource Include="Image\Ex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CustomControl\HeaderDivider.xaml.cs" />
+    <Compile Remove="CustomControl\LabelSection.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\NewWODPage.xaml.cs">
+      <DependentUpon>NewWODPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
